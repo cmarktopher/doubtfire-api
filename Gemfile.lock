@@ -99,8 +99,6 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    database_cleaner (2.0.2)
-      database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
@@ -455,6 +453,7 @@ DEPENDENCIES
   icalendar
   json-jwt
   listen
+  mime-types (~> 3.3)
   minitest
   minitest-around
   minitest-rails
