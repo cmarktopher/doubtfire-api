@@ -82,6 +82,9 @@ gem 'dotenv-rails'
 gem 'rack-cors', require: 'rack/cors'
 gem 'require_all', '>=1.3.3'
 
+# Numbas
+gem 'mime-types', '~> 3.3'
+
 # Excel support
 gem 'roo', '~> 2.7.0'
 gem 'roo-xls'
