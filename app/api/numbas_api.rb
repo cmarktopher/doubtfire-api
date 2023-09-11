@@ -72,9 +72,7 @@ class NumbasApi < Grape::API
 
       # Use the FileHelper to save the uploaded test
       save_path = FileHelper.get_numbas_test_path(params[:unit_code], params[:task_definition_id], 'numbas_test.zip')
-      File.open(save_path, 'wb') do |f|
-        f.write(params[:file][:tempfile].read)
-      end
+      File.binwrite(save_path, params[:file][:tempfile].read)
 
       { success: true, message: 'File uploaded successfully' }
     end
