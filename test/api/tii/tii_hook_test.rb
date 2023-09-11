@@ -30,9 +30,9 @@ class TeachingPeriodTest < ActiveSupport::TestCase
     )
 
     # destroy will trigger delete of submission
-    delete_request = stub_request(:delete, /https:\/\/#{ENV['TCA_HOST']}\/api\/v1\/submissions\/e884f478-9757-41c7-80da-37b94ebb2838/).
-    with(tii_headers).
-    to_return(status: 200, body: "", headers: {})
+    # destroy will trigger delete of submission
+    delete_request = stub_request(:delete, %r{https://#{ENV.fetch('TCA_HOST')}/api/v1/submissions/e884f478-9757-41c7-80da-37b94ebb2838})
+                     .with(tii_headers).to_return(status: 200, body: "", headers: {})
 
     data = TCAClient::SubmissionCompleteWebhookRequest.new(
       "id" => "e884f478-9757-41c7-80da-37b94ebb2838",
@@ -44,11 +44,7 @@ class TeachingPeriodTest < ActiveSupport::TestCase
       "word_count" => 145,
       "character_count" => 760,
       "created_time" => "2017-08-30T22:13:41Z",
-      "capabilities" => [
-          "INDEX",
-          "VIEWER",
-          "SIMILARITY"
-      ],
+      "capabilities" => %w[INDEX VIEWER SIMILARITY],
       "metadata" => {
         "custom" => "{\"Type\":\"Final Paper\"}"
       }

@@ -16,7 +16,7 @@ class NumbasApi < Grape::API
       # Get an input stream for the requested file within the ZIP archive
       Zip::File.open(zip_path) do |zip_file|
         zip_file.each do |entry|
-          puts "Entry name: #{entry.name}"
+          logger.debug "Entry name: #{entry.name}"
           if entry.name == file_path
             file_stream = entry.get_input_stream
             break
@@ -31,7 +31,7 @@ class NumbasApi < Grape::API
 
       # Set the content type based on the file extension
       content_type = MIME::Types.type_for(file_path).first.content_type
-      puts "Content type: #{content_type}"
+      logger.debug "Content type: #{content_type}"
 
       # Set the content type header
       header 'Content-Type', content_type
