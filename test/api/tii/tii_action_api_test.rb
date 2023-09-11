@@ -21,15 +21,16 @@ class TiiActionApiTest < ActiveSupport::TestCase
     # Create a task definition with two attachments
     @unit = FactoryBot.create(:unit, with_students: false, task_count: 0)
 
-    @task_def = FactoryBot.create(:task_definition, unit: @unit, upload_requirements: [
-      {
-        'key' => 'file0',
-        'name' => 'My document',
-        'type' => 'document',
-        'tii_check' => 'true',
-        'tii_pct' => '10'
-      }
-    ])
+    @task_def = FactoryBot.create(:task_definition, unit: @unit, upload_requirements:
+      [
+        {
+          'key' => 'file0',
+          'name' => 'My document',
+          'type' => 'document',
+          'tii_check' => 'true',
+          'tii_pct' => '10'
+        }
+      ])
 
     ga1 = TiiGroupAttachment.create(
       task_definition: @task_def,
@@ -154,7 +155,7 @@ class TiiActionApiTest < ActiveSupport::TestCase
     TiiActionJob.clear
     add_auth_header_for(user: User.where(role: Role.admin).first)
     action = TiiActionUploadSubmission.last
-    put_json "/api/tii_actions/#{action.id}", { 'action': 'retry' }
+    put_json "/api/tii_actions/#{action.id}", { action: "retry" }
 
     assert_equal 200, last_response.status
     assert_equal 1, TiiActionJob.jobs.size
@@ -167,10 +168,10 @@ class TiiActionApiTest < ActiveSupport::TestCase
     add_auth_header_for(user: User.where(role: Role.admin).first)
     action = TiiActionUploadSubmission.last
 
-    put_json "/api/tii_actions/#{action.id}", { 'action': 'retry' }
+    put_json "/api/tii_actions/#{action.id}", { action: 'retry' }
     assert_equal 200, last_response.status
 
-    put_json "/api/tii_actions/#{action.id}", { 'action': 'retry' }
+    put_json "/api/tii_actions/#{action.id}", { action: 'retry' }
     assert_equal 403, last_response.status
 
     assert_equal 1, TiiActionJob.jobs.size
