@@ -1,6 +1,10 @@
 require 'grape'
 require 'zip'
 require 'mime/types'
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/new/numbas-integration
 class NumbasApi < Grape::API
   # Include the AuthenticationHelpers for authentication functionality
   helpers AuthenticationHelpers
