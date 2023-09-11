@@ -1,7 +1,6 @@
 require 'grape'
 require 'zip'
 require 'mime/types'
-
 class NumbasApi < Grape::API
   # Include the AuthenticationHelpers for authentication functionality
   helpers AuthenticationHelpers
