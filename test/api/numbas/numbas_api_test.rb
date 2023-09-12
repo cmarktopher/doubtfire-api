@@ -7,7 +7,7 @@ require 'fileutils'
 class NumbasApiTest < ActiveSupport::TestCase
   include Rack::Test::Methods
   include TestHelpers::AuthHelper
-  include TestHelpers::FileHelper
+  include TestHelpers::TestFileHelper
 
   def app
     NumbasApi
