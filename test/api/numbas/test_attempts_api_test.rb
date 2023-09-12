@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'test_helper'
 require 'grape'
 
 RSpec.describe SaveTestAPI, type: :request do
